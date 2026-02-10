@@ -45,6 +45,45 @@ header {
     transition: background 500ms ease, color 300ms ease;
 }
 
+h1 {
+    font-size: 24px;
+    margin: 0;
+    display: flex;
+    text-align: center;
+    color: var(--brown);
+}
+
+h2 {
+    font-size: 20px;
+    margin: 0;
+    display: flex;
+    text-align: center;
+    color: var(--brown);
+}
+
+.history{
+    font-size: 16px;
+    margin: 20px 0;
+    padding: 0 20px;
+    color: var(--black);
+    line-height: 1.5;
+    display: flex;
+    text-align: center;
+}
+
+.txt {
+    font-size: 16px;
+    margin: 20px 20px;
+    padding: 0 20px;
+    color: var(--black);
+    background-color: rgb(123, 144, 166, 0.5);
+    border-radius: 16px;
+    line-height: 1.5;
+    display: flex;
+    text-align: center;
+}
+
+
 /* Hover & active states */
 .headband:hover { 
     background: var(--green); 
@@ -61,19 +100,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-}
-
-/* Theme toggle button */
-#theme-toggle {
-    background: transparent;
-    border: 1px solid rgba(0,0,0,0.08);
-    padding: 6px 8px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.Logo{
     height: 100%;
 }
 
