@@ -4,25 +4,564 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>expense_report GSB</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Note de Frais GSB</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; background: #f5f5f5; font-family: 'Segoe UI', sans-serif; }
+        
+        .header-connected {
+            background: linear-gradient(135deg, #8ab98b 0%, #7b90a6 100%);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .profile-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .profile-text h3 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .profile-text p {
+            margin: 2px 0 0 0;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid white;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab-button.active {
+            color: #8ab98b;
+            border-bottom-color: #8ab98b;
+        }
+        
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        h2 {
+            color: #8ab98b;
+            border-bottom: 3px solid #8ab98b;
+            padding-bottom: 10px;
+            margin: 0 0 20px 0;
+        }
+        
+        .expense-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group.full { grid-column: 1 / -1; }
+        
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        input, textarea, select {
+            padding: 12px;
+            border: 2px solid #8ab98b;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #7b90a6;
+            box-shadow: 0 0 0 4px rgba(123, 144, 166, 0.15);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #8ab98b 0%, #7b90a6 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(138, 185, 139, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(138, 185, 139, 0.4);
+        }
+        
+        .expenses-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .expenses-table th {
+            background: linear-gradient(135deg, #8ab98b 0%, #7b90a6 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .expenses-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .expenses-table tr:hover {
+            background: rgba(138, 185, 139, 0.05);
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-approved { background: #d4edda; color: #155724; }
+        .status-rejected { background: #f8d7da; color: #721c24; }
+        
+        @media (max-width: 768px) {
+            .header-connected { 
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .expense-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
     <link rel="icon" href="logo GSB.png">
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <img id="logo" src="logo.png" alt="Logo GSB" height="100">
-            <a href="search.html" class="headband">Recherche et Innovation</a>
-            <a href="expense_report.html" class="headband">Note de Frais</a>
-            <a href="about.html" class="headband">À propos</a>
-            <a href="contact.html" class="headband">Contact</a>
-            <a href="login.html" class="headband">Connexion</a>
+    <div class="header-connected">
+        <div style="text-align: center; flex: 1;">
+            <img src="logo.png" alt="Logo GSB" style="height: 40px;">
         </div>
-    </header>
-    <div>
-        <h1>Bienvenue chez GSB</h1>
+        <div class="user-info">
+            <div class="profile-badge">
+                <div class="profile-icon">👤</div>
+                <div class="profile-text">
+                    <h3 id="userFullName">Utilisateur</h3>
+                    <p id="userProfile">Visiteur médical</p>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="logout()">Déconnexion</button>
+        </div>
     </div>
+
+    <div class="container">
+        <h1 style="color: #8ab98b; margin-bottom: 30px;">Espace de Gestion des Notes de Frais</h1>
+        
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('new-expense')">Nouvelle note</button>
+            <button class="tab-button" onclick="switchTab('history')">Historique</button>
+            <button class="tab-button" onclick="switchTab('info')">Informations</button>
+        </div>
+
+        <!-- TAB 1: Nouvelle note -->
+        <div id="new-expense" class="tab-content active">
+            <h2>Renseigner fiche de frais</h2>
+
+            <div style="margin-bottom:16px; display:flex; gap:12px; align-items:center;">
+                <label for="ficheMonth" style="font-weight:600;">Mois :</label>
+                <input type="month" id="ficheMonth">
+                <button class="submit-btn" onclick="initOrLoadFiche()">Charger / Initialiser</button>
+            </div>
+
+            <section style="margin-bottom:20px;">
+                <h3 style="margin:0 0 10px 0; color:#7b90a6;">Éléments forfaitisés</h3>
+                <div class="expense-form">
+                    <div class="form-group">
+                        <label for="forfait_etape">Forfait Étape (quantité)</label>
+                        <input type="number" id="forfait_etape" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="forfait_km">Frais kilométriques (km)</label>
+                        <input type="number" id="forfait_km" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="forfait_nuitees">Nuitées hôtel (nb)</label>
+                        <input type="number" id="forfait_nuitees" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="forfait_repas">Repas restaurant (nb)</label>
+                        <input type="number" id="forfait_repas" min="0" value="0">
+                    </div>
+                </div>
+                <div style="margin-top:12px;">
+                    <button class="submit-btn" onclick="saveForfaits()">Enregistrer forfaits</button>
+                </div>
+            </section>
+
+            <section>
+                <h3 style="margin:0 0 10px 0; color:#7b90a6;">Frais hors forfait</h3>
+
+                <div style="margin-bottom:12px;">
+                    <table class="expenses-table" id="hfTable" style="margin-bottom:8px;">
+                        <thead>
+                            <tr><th>Date</th><th>Libellé</th><th>Montant</th><th>Action</th></tr>
+                        </thead>
+                        <tbody id="hfBody"></tbody>
+                    </table>
+                </div>
+
+                <form id="hfForm" onsubmit="addHorsForfait(event)">
+                    <div class="expense-form">
+                        <div class="form-group">
+                            <label for="hfDate">Date d'engagement</label>
+                            <input type="date" id="hfDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hfLabel">Libellé</label>
+                            <input type="text" id="hfLabel" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hfAmount">Montant (€)</label>
+                            <input type="number" id="hfAmount" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <button type="submit" class="submit-btn">Ajouter hors forfait</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <!-- TAB 2: Historique / Consultation -->
+        <div id="history" class="tab-content">
+            <h2>Consulter fiche de frais</h2>
+
+            <div style="margin-bottom:16px; display:flex; gap:12px; align-items:center;">
+                <label for="consultMonth" style="font-weight:600;">Sélectionnez un mois :</label>
+                <input type="month" id="consultMonth">
+                <button class="submit-btn" onclick="loadConsultFiche()">Afficher</button>
+            </div>
+
+            <div id="consultResult"></div>
+        </div>
+
+        <!-- TAB 3: Informations -->
+        <div id="info" class="tab-content">
+            <h2>Informations sur les visiteurs médicaux</h2>
+            <p style="line-height: 1.8; color: #666;">
+                La force commerciale d'un laboratoire pharmaceutique est assurée par un travail de conseil et 
+                d'information auprès des prescripteurs. Les visiteurs médicaux (ou délégués) démarchent les 
+                médecins, pharmaciens, infirmières et autres métiers de santé susceptibles de prescrire aux 
+                patients les produits du laboratoire.
+            </p>
+            
+            <h3 style="color: #7b90a6; margin-top: 25px;">Gestion des frais</h3>
+            <p style="line-height: 1.8; color: #666;">
+                Une gestion unique de ces frais et remboursement pour l'ensemble de la flotte visite est souhaitée. 
+                Les visiteurs peuvent soumettre leurs notes de frais via cette plateforme pour un traitement rapide 
+                et transparentdéfinissez l'organisation de la flotte de visiteurs selon un système hiérarchique par 
+                région et, à un niveau supérieur, par secteur géographique.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // ---- Gestion session ----
+        function getUserSession() {
+            const s = localStorage.getItem('userSession');
+            return s ? JSON.parse(s) : null;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = getUserSession();
+            if (!user) { window.location.href = 'login.html'; return; }
+            document.getElementById('userFullName').textContent = user.firstName + ' ' + user.lastName;
+            document.getElementById('userProfile').textContent = user.profile;
+
+            // Pré-remplir les selectors avec le mois courant
+            const now = new Date();
+            const monthValue = now.toISOString().slice(0,7);
+            document.getElementById('ficheMonth').value = monthValue;
+            document.getElementById('consultMonth').value = monthValue;
+            // Charger la fiche courante si existante
+            loadFicheToUI(monthValue);
+        });
+
+        function monthKeyFrom(value) {
+            // value like '2026-02' or Date
+            if (!value) {
+                const d = new Date();
+                return d.toISOString().slice(0,7);
+            }
+            if (value instanceof Date) return value.toISOString().slice(0,7);
+            return value;
+        }
+
+        function storageKey(username, monthKey) {
+            return `fiche:${username}:${monthKey}`;
+        }
+
+        function loadFiche(username, monthKey) {
+            const key = storageKey(username, monthKey);
+            const raw = localStorage.getItem(key);
+            return raw ? JSON.parse(raw) : null;
+        }
+
+        function saveFiche(username, monthKey, fiche) {
+            const key = storageKey(username, monthKey);
+            localStorage.setItem(key, JSON.stringify(fiche));
+        }
+
+        // initialize or load fiche for selected month (per use case: prefill given values)
+        function initOrLoadFiche() {
+            const user = getUserSession();
+            if (!user) return alert('Session invalide');
+            const month = monthKeyFrom(document.getElementById('ficheMonth').value);
+            let fiche = loadFiche(user.username, month);
+            if (!fiche) {
+                // Créer nouvelle fiche. On initialise avec les valeurs demandées.
+                fiche = {
+                    month: month,
+                    forfaits: { forfait_etape: 0, forfait_km: 750, forfait_nuitees: 9, forfait_repas: 12 },
+                    horsForfait: [
+                        { date: '2025-11-18', libelle: 'Repas représentation', montant: 156.00 },
+                        { date: '2025-11-22', libelle: 'Achat fleuriste soirée Medilog', montant: 120.30 }
+                    ]
+                };
+                saveFiche(user.username, month, fiche);
+                alert("Nouvelle fiche initialisée pour " + month + ". Forfaits et hors-forfait pré-remplis.");
+            }
+            loadFicheToUI(month);
+        }
+
+        function loadFicheToUI(month) {
+            const user = getUserSession();
+            if (!user) return;
+            const fiche = loadFiche(user.username, month);
+            if (!fiche) {
+                // reset UI
+                document.getElementById('forfait_etape').value = 0;
+                document.getElementById('forfait_km').value = 0;
+                document.getElementById('forfait_nuitees').value = 0;
+                document.getElementById('forfait_repas').value = 0;
+                document.getElementById('hfBody').innerHTML = '';
+                return;
+            }
+            // remplir forfaits
+            document.getElementById('forfait_etape').value = fiche.forfaits.forfait_etape || 0;
+            document.getElementById('forfait_km').value = fiche.forfaits.forfait_km || 0;
+            document.getElementById('forfait_nuitees').value = fiche.forfaits.forfait_nuitees || 0;
+            document.getElementById('forfait_repas').value = fiche.forfaits.forfait_repas || 0;
+            renderHorsForfaitList(fiche.horsForfait || []);
+        }
+
+        function saveForfaits() {
+            const user = getUserSession(); if (!user) return;
+            const month = monthKeyFrom(document.getElementById('ficheMonth').value);
+            const fEtape = document.getElementById('forfait_etape').value;
+            const fKm = document.getElementById('forfait_km').value;
+            const fNuitees = document.getElementById('forfait_nuitees').value;
+            const fRepas = document.getElementById('forfait_repas').value;
+
+            // validations numériques
+            if (isNaN(fEtape) || isNaN(fKm) || isNaN(fNuitees) || isNaN(fRepas)) {
+                return alert('Valeur numérique attendue.');
+            }
+
+            let fiche = loadFiche(user.username, month);
+            if (!fiche) {
+                fiche = { month: month, forfaits: {}, horsForfait: [] };
+            }
+            fiche.forfaits = {
+                forfait_etape: Number(fEtape),
+                forfait_km: Number(fKm),
+                forfait_nuitees: Number(fNuitees),
+                forfait_repas: Number(fRepas)
+            };
+            saveFiche(user.username, month, fiche);
+            alert('Forfaits enregistrés.');
+        }
+
+        function renderHorsForfaitList(list) {
+            const tbody = document.getElementById('hfBody');
+            tbody.innerHTML = '';
+            list.forEach((hf, idx) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${hf.date}</td><td>${hf.libelle}</td><td>${Number(hf.montant).toFixed(2)} €</td><td><button class=\"submit-btn\" onclick=\"deleteHorsForfait(${idx})\">Supprimer</button></td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function addHorsForfait(e) {
+            e.preventDefault();
+            const user = getUserSession(); if (!user) return;
+            const month = monthKeyFrom(document.getElementById('ficheMonth').value);
+            const date = document.getElementById('hfDate').value;
+            const libelle = document.getElementById('hfLabel').value.trim();
+            const montant = document.getElementById('hfAmount').value;
+
+            if (!date || !libelle || montant === '') return alert('Le champ date (ou libellé ou montant) doit être renseigné');
+            const d = new Date(date);
+            if (isNaN(d)) return alert("La date d'engagement doit être valide");
+
+            // date within last year
+            const now = new Date();
+            const oneYearAgo = new Date(); oneYearAgo.setFullYear(now.getFullYear() -1);
+            if (d < oneYearAgo) return alert("La date d'engagement doit se situer dans l'année écoulée");
+
+            if (isNaN(montant)) return alert('Valeur numérique attendue.');
+
+            let fiche = loadFiche(user.username, month);
+            if (!fiche) fiche = { month: month, forfaits: { forfait_etape:0, forfait_km:0, forfait_nuitees:0, forfait_repas:0 }, horsForfait: [] };
+            fiche.horsForfait.push({ date: date, libelle: libelle, montant: Number(montant) });
+            saveFiche(user.username, month, fiche);
+            renderHorsForfaitList(fiche.horsForfait);
+            document.getElementById('hfForm').reset();
+        }
+
+        function deleteHorsForfait(index) {
+            const user = getUserSession(); if (!user) return;
+            const month = monthKeyFrom(document.getElementById('ficheMonth').value);
+            const fiche = loadFiche(user.username, month);
+            if (!fiche) return;
+            if (!confirm('Confirmez la suppression de ce frais hors forfait ?')) return;
+            fiche.horsForfait.splice(index,1);
+            saveFiche(user.username, month, fiche);
+            renderHorsForfaitList(fiche.horsForfait);
+        }
+
+        // Consultation
+        function loadConsultFiche() {
+            const user = getUserSession(); if (!user) return;
+            const month = monthKeyFrom(document.getElementById('consultMonth').value);
+            const fiche = loadFiche(user.username, month);
+            const out = document.getElementById('consultResult');
+            if (!fiche) { out.innerHTML = `<p>Aucune fiche trouvée pour ${month}.</p>`; return; }
+
+            // build HTML
+            let html = `<h3>Fiche de frais - ${fiche.month}</h3>`;
+            html += `<h4>Forfaits</h4>`;
+            html += `<ul>`;
+            html += `<li>Forfait Étape: ${fiche.forfaits.forfait_etape}</li>`;
+            html += `<li>Frais kilométriques: ${fiche.forfaits.forfait_km} km</li>`;
+            html += `<li>Nuitées hôtel: ${fiche.forfaits.forfait_nuitees}</li>`;
+            html += `<li>Repas restaurant: ${fiche.forfaits.forfait_repas}</li>`;
+            html += `</ul>`;
+            html += `<h4>Hors forfait</h4>`;
+            if (!fiche.horsForfait || fiche.horsForfait.length===0) {
+                html += `<p>Aucun frais hors forfait.</p>`;
+            } else {
+                html += `<table class=\"expenses-table\"><thead><tr><th>Date</th><th>Libellé</th><th>Montant</th></tr></thead><tbody>`;
+                fiche.horsForfait.forEach(hf => {
+                    html += `<tr><td>${hf.date}</td><td>${hf.libelle}</td><td>${Number(hf.montant).toFixed(2)} €</td></tr>`;
+                });
+                html += `</tbody></table>`;
+            }
+            out.innerHTML = html;
+        }
+
+        // Onglets
+        function switchTab(tabName, ev) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(c => c.classList.remove('active'));
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(b => b.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            if (ev && ev.currentTarget) ev.currentTarget.classList.add('active');
+        }
+
+        // Déconnexion
+        function logout() {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                localStorage.removeItem('userSession');
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
 </body>
 
 </html>

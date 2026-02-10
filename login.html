@@ -4,25 +4,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login GSB</title>
+    <title>Connexion GSB</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="login.css">
     <link rel="icon" href="logo GSB.png">
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <img id="logo" src="logo.png" alt="Logo GSB" height="100">
-            <a href="search.html" class="headband">Recherche et Innovation</a>
-            <a href="expense_report.html" class="headband">Note de Frais</a>
-            <a href="about.html" class="headband">À propos</a>
-            <a href="contact.html" class="headband">Contact</a>
-            <a href="login.html" class="headband">Connexion</a>
-        </div>
-    </header>
-    <div>
-        <h1>Bienvenue chez GSB</h1>
+    <div id="wrap">
+        <header class="header">
+            <nav class="nav">
+                <a href="#wrap" id="open">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px" y="0px" width="34px" height="27px" viewBox="0 0 34 27" enable-background="new 0 0 34 27"
+                        xml:space="preserve">
+                        <rect fill="#FFFFFF" width="34" height="4" />
+                        <rect y="11" fill="#FFFFFF" width="34" height="4" />
+                        <rect y="23" fill="#FFFFFF" width="34" height="4" />
+                    </svg>
+                </a>
+                <a href="#" id="close">×</a>
+                <h1><a href="index.html">Contexte GSB</a></h1>
+                <a href="history.html">Notre Histoire</a>
+                <a href="search.html">Recherche et Innovation</a>
+                <a href="about.html">À propos</a>
+                <a href="login.html">Connexion</a>
+                <a href="contact.html">Contact</a>
+                <a href="expense_report.html">Note de Frais</a>
+                <a href="legal notices.html">Mentions légales</a>
+            </nav>
+        </header>
+        <main class="main">
+            <div class="login-container">
+                <div class="login-card">
+                    <div class="login-header">
+                        <h1>Connexion GSB</h1>
+                        <p>Accédez à votre espace personnel</p>
+                    </div>
+
+                    <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+                    <form id="loginForm" class="login-form">
+                        <div class="form-group">
+                            <label for="username">
+                                <i class="icon">👤</i>
+                                Nom d'utilisateur
+                            </label>
+                            <input 
+                                type="text" 
+                                id="username" 
+                                name="username" 
+                                placeholder="ex: lvillachane"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">
+                                <i class="icon">🔐</i>
+                                Mot de passe
+                            </label>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password"
+                                placeholder="ex: jux7g"
+                                required
+                            >
+                        </div>
+
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Se souvenir de moi</label>
+                        </div>
+
+                        <button type="submit" class="login-btn">Se connecter</button>
+                    </form>
+
+                    <div class="login-footer">
+                        <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                        <p style="font-size: 12px; color: var(--gray); margin-top: 15px;">
+                            Compte de test : <br>
+                            Login: <strong>lvillachane</strong><br>
+                            MDP: <strong>jux7g</strong>
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+        </main>
+
+        <script src="login.js"></script>
     </div>
+    <div class="overlay"></div>
+    </header>
 </body>
 
-</html>
+</html>/main>
+    </div>
+
+    <script src="login.js"></script
