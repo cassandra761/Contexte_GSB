@@ -23,14 +23,13 @@
                     </svg>
                 </a>
                 <a href="#" id="close">×</a>
-                <h1><a href="index.html">Contexte GSB</a></h1>
-                <a href="history.html">Notre Histoire</a>
-                <a href="search.html">Recherche et Innovation</a>
-                <a href="about.html">À propos</a>
-                <a href="login.html">Connexion</a>
-                <a href="contact.html">Contact</a>
-
-                <a href="legal notices.html">Mentions légales</a>
+                <h1><a href="index.php">Contexte GSB</a></h1>
+                <a href="history.php">Notre Histoire</a>
+                <a href="search.php">Recherche et Innovation</a>
+                <a href="about.php">À propos</a>
+                <a href="login.php">Connexion</a>
+                <a href="contact.php">Contact</a>
+                <a href="legal notices.php">Mentions légales</a>
             </nav>
         </header>
         <main class="main">
