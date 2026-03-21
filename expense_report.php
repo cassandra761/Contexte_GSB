@@ -2,8 +2,6 @@
 require 'config.php';
 ensureLoggedIn();
 $user = $_SESSION['user'];
-$errors = [];
-$success = '';
 
 // helper functions
 function getReport($pdo, $user_id, $month) {
