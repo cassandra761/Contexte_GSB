@@ -111,6 +111,13 @@ body {
     display: block;
 }
 
+h1 {
+    text-align: center;
+    color: #8ab98b;
+    border-bottom: 3px solid #8ab98b;
+    padding-bottom: 10px;
+}
+
 h2 {
     color: #8ab98b;
     border-bottom: 3px solid #8ab98b;
@@ -118,46 +125,6 @@ h2 {
     margin: 0 0 20px 0;
 }
 
-.expense-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group.full {
-    grid-column: 1 / -1;
-}
-
-label {
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #333;
-    font-size: 14px;
-}
-
-input,
-textarea,
-select {
-    padding: 12px;
-    border: 2px solid #8ab98b;
-    border-radius: 6px;
-    font-size: 14px;
-    font-family: inherit;
-    transition: all 0.3s;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-    outline: none;
-    border-color: #7b90a6;
-    box-shadow: 0 0 0 4px rgba(123, 144, 166, 0.15);
-}
 
 .submit-btn {
     background: linear-gradient(135deg, #8ab98b 0%, #7b90a6 100%);
@@ -200,6 +167,67 @@ select:focus {
     background: rgba(138, 185, 139, 0.05);
 }
 
+
+.btn-valider,
+.btn-refuser {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-right: 5px;
+}
+
+.btn-valider {
+    background: #d4edda;
+    color: #155724;
+}
+
+.btn-valider:hover {
+    background: #28a745;
+    color: white;
+    transform: translateY(-1px);
+}
+
+.btn-refuser {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.btn-refuser:hover {
+    background: #dc3545;
+    color: white;
+    transform: translateY(-1px);
+}
+
+.success {
+    background: #d4edda;
+    color: #155724;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border-left: 4px solid #28a745;
+}
+
+.error {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border-left: 4px solid #dc3545;
+}
+
+.warning {
+    background: #fff3cd;
+    color: #856404;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border-left: 4px solid #ffc107;
+}
 
 @media (max-width: 768px) {
     .header-connected {

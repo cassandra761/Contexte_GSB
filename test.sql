@@ -1,3 +1,0 @@
-CREATE DATABASE test;
-GRANT ALL PRIVILEGES ON test.* TO 'usertest'@'localhost' IDENTIFIED BY 'password';
-FLUSH PRIVILEGES;

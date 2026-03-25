@@ -29,7 +29,6 @@
                 <a href="about.php">À propos</a>
                 <a href="login.php">Connexion</a>
                 <a href="contact.php">Contact</a>
-                <a href="expense_report.php">Note de Frais</a>
                 <a href="legal notices.php">Mentions légales</a>
             </nav>
         </header>

@@ -69,12 +69,6 @@ body {
     background: rgba(255, 255, 255, 0.3);
 }
 
-.container {
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 0 20px;
-}
-
 .tabs {
     display: flex;
     gap: 10px;
@@ -109,6 +103,14 @@ body {
 
 .tab-content.active {
     display: block;
+}
+
+
+h1 {
+    text-align: center;
+    color: #8ab98b;
+    border-bottom: 3px solid #8ab98b;
+    padding-bottom: 10px;
 }
 
 h2 {
@@ -200,6 +202,127 @@ select:focus {
     background: rgba(138, 185, 139, 0.05);
 }
 
+/* Boutons d'action améliorés */
+.btn-valider,
+.btn-refuser,
+.btn-edit,
+.btn-delete,
+.btn-view,
+.btn-structure {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 8px;
+    margin-bottom: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-valider {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+}
+
+.btn-valider:hover {
+    background: linear-gradient(135deg, #218838 0%, #1aa085 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-refuser,
+.btn-delete {
+    background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+    color: white;
+}
+
+.btn-refuser:hover,
+.btn-delete:hover {
+    background: linear-gradient(135deg, #c82333 0%, #e8680d 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, #007bff 0%, #6610f2 100%);
+    color: white;
+}
+
+.btn-edit:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #5a0fc8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.btn-view {
+    background: linear-gradient(135deg, #17a2b8 0%, #20c997 100%);
+    color: white;
+}
+
+.btn-view:hover {
+    background: linear-gradient(135deg, #138496 0%, #1aa085 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+}
+
+.btn-structure {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    color: white;
+}
+
+.btn-structure:hover {
+    background: linear-gradient(135deg, #5a6268 0%, #383d41 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+.btn-valider:active,
+.btn-refuser:active,
+.btn-edit:active,
+.btn-delete:active,
+.btn-view:active,
+.btn-structure:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajout d'icônes aux boutons */
+.btn-valider::before { content: "✓"; }
+.btn-edit::before { content: "✏"; }
+.btn-delete::before, .btn-refuser::before { content: "🗑"; }
+.btn-view::before { content: "👁"; }
+.btn-structure::before { content: "📋"; }
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-approved {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-rejected {
+    background: #f8d7da;
+    color: #721c24;
+}
 
 @media (max-width: 768px) {
     .header-connected {

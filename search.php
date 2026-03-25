@@ -38,22 +38,27 @@
             </div>
             <h1>Nos traveaux de recherches</h1>
             <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio perspiciatis explicabo ratione pariatur odio maiores voluptatem iure rerum labore praesentium aliquid sequi, eos cumque, modi vero natus? Laborum, perferendis suscipit?
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore debitis eligendi iure, eos dolorem quasi nemo dolore, cupiditate, blanditiis odio magni impedit rem sapiente deleniti laborum voluptates enim quae! Distinctio.
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem doloribus enim similique iusto natus? Libero suscipit quis eum, aspernatur dolorem numquam accusantium, laboriosam tenetur earum perspiciatis deserunt sequi consectetur placeat?
-               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea quaerat neque vel nesciunt deserunt, error consequuntur qui. Commodi repellendus reiciendis nam consequuntur praesentium sit, hic dolore unde dolorum quae iure!
-               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores cupiditate, doloremque quasi reiciendis iusto delectus voluptates illo impedit laudantium ut aliquam soluta eum, fugiat est velit quidem vitae reprehenderit consectetur?
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, architecto non quos doloribus ullam fugit unde repellat facere, ratione tempore, perspiciatis similique enim error ipsum optio expedita? Temporibus, sit. Quis?
-               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro possimus autem similique fugiat odit ad voluptatibus hic, iusto fuga quidem eaque rerum ea voluptas corrupti, non enim. Veritatis, placeat dolores.
+                Dû a nos recherches approfondies, nous avons pu faire de nombreuses découvertes dans le domaine de la santé et du médical. Nous avons notamment développé des médicaments innovants pour traiter des maladies rares et des thérapies géniques pour les patients atteints de maladies génétiques. Nous avons également mené des études cliniques pour évaluer l'efficacité de nos traitements et collaboré avec des institutions de recherche du monde entier pour partager nos connaissances et nos découvertes.
+                <br>
+                Ce travail de recherche nous a permis de faire des avancées significatives dans le domaine de la santé et de contribuer à améliorer la vie des patients à travers le monde. Nous sommes fiers de notre engagement envers la recherche et l'innovation, et nous continuerons à travailler dur pour développer des traitements efficaces et accessibles pour les patients du monde entier.
+                <br>
+                Toute notre équipe de chercheurs et de scientifiques est dédiée à la recherche et à l'innovation, et nous sommes constamment à la recherche de nouvelles idées et de nouvelles approches pour améliorer les soins de santé. Nous sommes convaincus que la recherche est essentielle pour faire progresser la médecine et améliorer la vie des patients, et nous sommes fiers de contribuer à cette mission importante.
+                <br>
+                En ce qui concerne nos travaux de recherche, nous avons également investi dans des technologies de pointe pour accélérer le processus de découverte et de développement de nouveaux traitements. Nous avons mis en place des laboratoires de recherche modernes et équipés de technologies avancées pour permettre à nos chercheurs de mener des expériences et des analyses approfondies. Nous avons également adopté des approches innovantes telles que l'intelligence artificielle et la modélisation informatique pour accélérer le processus de découverte et améliorer l'efficacité de nos recherches.
+                <br>
+                En fin de compte, nos travaux de recherche sont au cœur de notre mission de fournir des traitements innovants et efficaces pour les patients du monde entier. Nous sommes fiers de notre engagement envers la recherche et l'innovation, et nous continuerons à travailler dur pour faire progresser la médecine et améliorer la vie des patients à travers le monde.
+
+
             </p>
             <h1>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Nos innovations
             </h1>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate. Doloribus, quisquam
-                consequatur. Voluptas, voluptate. Doloribus, quisquam consequatur. Voluptas, voluptate. Doloribus,
-                quisquam consequatur. Voluptas, voluptate. Doloribus, quisquam consequatur. Voluptas, voluptate.
-                Doloribus, quisquam consequatur.
+                En plus de nos travaux de recherche, nous avons également développé de nombreuses innovations pour améliorer les soins de santé et la vie des patients. Nous avons créé des dispositifs médicaux innovants pour aider les patients à gérer leurs conditions de santé, tels que des pompes à insuline intelligentes pour les patients atteints de diabète et des dispositifs de surveillance à distance pour les patients atteints de maladies chroniques.
+                <br>
+                Nous avons également développé des applications mobiles pour aider les patients à suivre leur santé et à gérer leurs traitements, ainsi que des plateformes en ligne pour faciliter la communication entre les patients et les professionnels de la santé. Nous sommes constamment à la recherche de nouvelles idées et de nouvelles approches pour améliorer les soins de santé, et nous sommes fiers de notre engagement envers l'innovation.
+                <br>
+                En fin de compte, nos innovations sont conçues pour améliorer la vie des patients et faciliter l'accès aux soins de santé. Nous sommes fiers de notre engagement envers l'innovation, et nous continuerons à travailler dur pour développer des solutions innovantes qui répondent aux besoins des patients du monde entier.
             </p>
         </main>
     </div>
