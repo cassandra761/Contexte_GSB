@@ -1,8 +1,20 @@
 <?php
+<<<<<<< HEAD
 session_start();
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     exit();
+=======
+require 'config.php';
+ensureLoggedIn();
+$user = $_SESSION['user'];
+
+// helper functions
+function getReport($pdo, $user_id, $month) {
+    $stmt = $pdo->prepare('SELECT * FROM expense_reports WHERE user_id = ? AND report_month = ?');
+    $stmt->execute([$user_id, $month]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+>>>>>>> 75602c25ef7ae693f61b62c7a4206c3ffee4b408
 }
 
 // Optionnel : vérifier le rôle
